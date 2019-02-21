@@ -257,6 +257,17 @@ describe('source-map-explorer', function () {
 `);
     });
 
+    it('should handle path wrapped with single quotes', async () => {
+      const result = await execute(SCRIPT_PATH, ['\'testdata/foo.min.inline-map.js\'', '--tsv']);
+
+      expect(result).to.be.equal(`Source\tSize
+463\tnode_modules/browserify/node_modules/browser-pack/_prelude.js
+2854\tdist/bar.js
+137\tdist/foo.js
+0\t<unmapped>
+`);
+    });
+
     it('should output result as html', async () => {
       const result = await execute(SCRIPT_PATH, ['testdata/foo.min.inline-map.js', '--html']);
 
